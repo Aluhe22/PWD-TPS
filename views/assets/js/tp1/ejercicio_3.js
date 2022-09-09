@@ -7,12 +7,8 @@
     // Loop over them and prevent submission
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
-        var error = false;
-        var numero = document.getElementById('numero').value;
-        if(!isNaN(numero)){
-           var error = true;
-        }
-        if (!form.checkValidity() || error) {
+        
+        if (!form.checkValidity()) {
             event.preventDefault();
             event.stopPropagation();
         }

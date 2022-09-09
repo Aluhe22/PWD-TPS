@@ -22,24 +22,28 @@ class tp_1_ejercicio_7{
            
             if (isset($datos['caso']) && $error != true) {
                 if ($datos['caso'] != '' && $datos['caso'] != null) {
-                    if ($datos['caso'] == 1) {
-                        //es resta
-                        $data['simbolo'] = '-';
-                        $result = $numero_1 - $numero_2;
+                    switch ($datos['caso']) {
+                        case 1:
+                            $data['simbolo'] = '-';
+                            $result = $numero_1 - $numero_2;
+                            break;
+                        case 2:
+                            $data['simbolo'] = '/';
+                            $result = $numero_1 / $numero_2;
+                            break;
+                        case 3:
+                            $data['simbolo']='+';
+                            $result = $numero_1 + $numero_2;
+                            break;
+                        default:
+                            $error = true;
+                        break;
                     }
-                    if ($datos['caso'] == 2) {
-                        //es dividir
-                        $data['simbolo'] = '/';
-                        $result = $numero_1 / $numero_2;
-                    }
-                    if ($datos['caso'] == 3) {
-                        //es suma
-                        $data['simbolo']='+';
-                        $result = $numero_1 + $numero_2;
-                    }
-                }
             }else{$error = true;}
         }
+        
+    }
+
 
         $data['error'] = $error;
         $data['numero_1'] = $numero_1;
@@ -47,7 +51,6 @@ class tp_1_ejercicio_7{
         $data['result'] = $result;
         
         return $data;
-
     }
 }
 

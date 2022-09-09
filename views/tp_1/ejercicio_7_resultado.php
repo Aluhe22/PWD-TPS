@@ -14,8 +14,10 @@ $result = $obj_controlador->visualizar_resultado($datos);
 <h2>Resultado del Ejercicio 7:</h2>
     <div class="mb-3">
     <p class="lead"> <?php
-    if ($result['error'] == false ) {
+    if ($result['error'] != true ) {
         echo $result['numero_1'].' '.$result['simbolo'].' '.$result['numero_2'].' = '.$result['result'];
+    }else{
+        echo 'Error no ingreso todos los datos requeridos';
     }
     ?></p>
     </div>

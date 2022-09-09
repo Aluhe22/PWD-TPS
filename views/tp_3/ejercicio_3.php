@@ -2,63 +2,84 @@
 include_once("../common/sidebar_menu.php");
 ?>
 <div class="container-fluid">
-<div class="container col-md-12" style="margin:30px;height: 150vh;">
+<div class="container col-md-12" style="margin:30px;height: 190vh;">
 <h2>Ejercicio 3</h2> 
 <form class="row g-3 needs-validation" novalidate id="from_cine" name="from_cine" method="post" action="ejercicio_3_resultado.php" enctype="multipart/form-data">
   <div class="col-md-6">
-    <label for="validationCustom01" class="form-label">Titulo</label>
-    <input name="titulo" type="text" class="form-control" id="validationCustom01" required>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
+    <label for="" class="form-label">Titulo</label>
+    <input name="titulo" type="text" class="form-control" id="titulo" required>
+     <div class="invalid-feedback">
+        Debe ingresar un titulo
+     </div>
+     <div class="valid-feedback">
+      正しい!
+     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom02" class="form-label">Actores</label>
-    <input type="text" class="form-control" id="validationCustom02" name="actor" required>
-    <div class="valid-feedback">
-      Looks good!
-    </div>
+    <label for="" class="form-label">Actores</label>
+    <input type="text" class="form-control" id="actor" name="actor" required>
+    <div class="invalid-feedback">
+        Debe ingresar un actor
+     </div>
+     <div class="valid-feedback">
+      正しい!
+     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom09" class="form-label">Director</label>
+    <label for="" class="form-label">Director</label>
     <div class="input-group has-validation">
-      <input type="text" class="form-control" id="validationCustom09" name="director" required>
+      <input type="text" class="form-control" id="director" name="director" required>
+      <div class="invalid-feedback">
+        Debe ingresar un direccion
+      </div>
       <div class="valid-feedback">
-      Looks good!
-    </div>
+      正しい!
+      </div>
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom03" class="form-label">Guion</label>
-    <input name="guion" type="text" class="form-control" id="validationCustom03" required>
+    <label for="" class="form-label">Guion</label>
+    <input name="guion" type="text" class="form-control" id="guion" required>
+    <div class="invalid-feedback">
+        Debe ingresar un guion
+    </div>
     <div class="valid-feedback">
-      Looks good!
+      正しい!
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom05" class="form-label">Produccion</label>
-    <input name="produccion" type="text" class="form-control" id="validationCustom05" required>
+    <label for="" class="form-label">Produccion</label>
+    <input name="produccion" type="text" class="form-control" id="produccion" required>
+    <div class="invalid-feedback">
+        Debe ingresar la produccion
+    </div>
     <div class="valid-feedback">
-      Looks good!
+      正しい!
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom08" class="form-label">Año</label>
-    <input name="anio" type="number" class="form-control" id="validationCustom08" maxlength="4" required>
+    <label for="" class="form-label">Año</label>
+    <input name="anio" type="number" class="form-control" id="anio" min="4" required>
+    <div class="invalid-feedback">
+        Debe ingresar el Año
+    </div>
     <div class="valid-feedback">
-      Looks good!
+      正しい!
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom10" class="form-label">Nacionalidad</label>
-    <input name="nacionalidad" type="text" class="form-control" id="validationCustom10" required>
+    <label for="" class="form-label">Nacionalidad</label>
+    <input name="nacionalidad" type="text" class="form-control" id="nacionalidad" required>
+    <div class="invalid-feedback">
+        Debe ingresar la Nacionalidad
+    </div>
     <div class="valid-feedback">
-      Looks good!
+      正しい!
     </div>
   </div>
   <div class="col-md-6">
-    <label for="validationCustom04" class="form-label">Genero</label>
-    <select name="genero" class="form-select" id="validationCustom04" required>
+    <label for="genero" class="form-label">Genero</label>
+    <select name="genero" class="form-select" id="genero" required>
       <option selected disabled value="">Seleccione genero...</option>
       <option value="1">Terror</option>
       <option value="2">Comedia</option>
@@ -67,15 +88,15 @@ include_once("../common/sidebar_menu.php");
       <option value="5">Suspensos</option>
       <option value="6">Otras</option>
     </select>
-    <div class="invalid-feedback">
-      Please select a valid state.
-    </div>
   </div>
   <div class="col-md-3">
-    <label for="validationCustom10" class="form-label">Duracion</label>
-    <input name="duracion" type="number" class="form-control" id="validationCustom10" required>
+    <label for="" class="form-label">Duracion</label>
+    <input name="duracion" type="number" class="form-control" id="duracion" min="1" required>
+    <div class="invalid-feedback">
+        Debe ingresar la duracion
+    </div>
     <div class="valid-feedback">
-      Looks good!
+      正しい!
     </div>
   </div>
   <div class="col-md-12">
@@ -96,17 +117,30 @@ include_once("../common/sidebar_menu.php");
     </div>
   </div>
   <div class="col-md-12">
-    <label for="exampleFormControlTextarea1" class="form-label">Sinopsis</label>
-    <textarea name="sinopsis" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+    <label for="" class="form-label">Sinopsis</label>
+    <textarea name="sinopsis" class="form-control" id="sinopsis" rows="3"></textarea>
+    <div class="invalid-feedback">
+        Debe ingresar una sipnopsis
+    </div>
+    <div class="valid-feedback">
+      正しい!
+    </div>
   </div>
   <div class="col-md-12">
-  <label for="validationCustom10" class="form-label">Archivo</label>
-  <input name="archivo" type="file" class="form-control" id="validationCustom11" required>
+  <label for="" class="form-label">Archivo</label>
+  <input name="archivo" type="file" class="form-control" id="archivo" required>
+    <div class="invalid-feedback">
+        Debe ingresar un archivo
+    </div>
+    <div class="valid-feedback">
+      正しい!
+    </div>  
   </div>
   <div class="col-md-12">
     <button class="btn btn-primary" type="submit">Guardar</button>
   </div>
 </form>
+<script src="../assets/js/tp3/ejercicio_3.js"></script>
 </div>
 </div>
 <?php

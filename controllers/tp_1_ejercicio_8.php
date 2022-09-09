@@ -12,7 +12,7 @@ class tp_1_ejercicio_8{
                 if ($datos['estudiante'] != '' && $datos['estudiante'] != null ) {
                     $es_estudiante = true;
                 }else{$error = true;}
-            }
+            }else{$error = true;}
            
             if (isset($datos['edad'] )) {
                 if ($datos['edad'] != '' && $datos['edad'] != null ) {
@@ -23,9 +23,9 @@ class tp_1_ejercicio_8{
                         $entrada = 180;
                     }
                 }
-            }
+            }else{$error = true;}
 
-        }
+        }else{$error = true;}
 
         $result['error'] = $error;
         $result['entrada'] = $entrada;
