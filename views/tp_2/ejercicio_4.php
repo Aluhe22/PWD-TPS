@@ -14,7 +14,7 @@ include_once("../common/sidebar_menu.php");
             <label for="" class="form-label">Titulo</label>
             <input name="titulo" type="text" class="form-control" id="titulo" required>
             <div class="invalid-feedback">
-              Debe ingresar un titulo MARTTIIIIIII
+              Debe ingresar un titulo
             </div>
             <div class="valid-feedback">
               正しい!
