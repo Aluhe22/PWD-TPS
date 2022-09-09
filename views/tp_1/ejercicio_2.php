@@ -4,7 +4,7 @@ include_once("../common/sidebar_menu.php");
 
 <div  class="container-fluid">
 <div class="container col-md-5" style="margin:30px;height: 150vh;">
-<h2>Ejercicio 2 ME FUNCIONA EL GITHUUUB DESDE EL VISUAAL</h2>
+<h2>Ejercicio 2 </h2>
 <h3>Horarios de la materia PWD</h3>
 <form class="needs-validation" novalidate id="from_horarios" name="from_horarios" method="post" action="ejercicio_2_resultado.php">
     <div class="mb-3">
