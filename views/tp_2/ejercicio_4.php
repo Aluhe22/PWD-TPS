@@ -140,7 +140,6 @@ include_once("../common/sidebar_menu.php");
                 <button type="reset" class="btn">Borrar</button>
               </div>
 
-
             </div>
         </div>  
         
