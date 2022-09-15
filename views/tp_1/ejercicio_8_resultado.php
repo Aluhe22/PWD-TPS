@@ -1,6 +1,6 @@
 <?php
 include_once("../../controllers/tp_1_ejercicio_8.php");
-include_once("../../controllers/My_Controller.php");
+//include_once("../../controllers/utiles.php");
 include_once("../common/sidebar_menu.php");
 
 $datos = data_submitted();
@@ -22,7 +22,7 @@ $result = $obj_controlador->visualizar_resultado($datos);
     ?></p>
     </div>
     <div class="mb-3">
-       <a href= "ejercicio_8.php" class="btn btn-primary">Volver</a>
+        <a href= "ejercicio_8.php" class="btn btn-primary">Volver</a>
     </div>
 </div>
 </div>
