@@ -74,4 +74,5 @@ class Auto{
     }
 
     //Funciones BD
+    
 }
