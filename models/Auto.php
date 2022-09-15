@@ -3,14 +3,25 @@ class Auto{
     private $patente;
     private $marca;
     private $modelo;
-    private $dniDuenio;
+    private $rDniDuenio; //Referencia al objeto persona
+    private $mensaje;
 
-    public function __construct($patente, $marca, $modelo, $dniDuenio)
+    public function __construct()
+    {
+        $this->patente = "";
+        $this->marca = "";
+        $this->modelo = "";
+        $this->rDniDuenio = "";
+        $this->mensaje = "";
+    }
+
+    public function cargar($patente, $marca, $modelo, $dniDuenio, $mensaje)
     {
         $this->patente = $patente;
         $this->marca = $marca;
         $this->modelo  = $modelo;
-        $this->dniDuenio = $dniDuenio;
+        $this->rDniDuenio = $dniDuenio;
+        $this->mensaje = $mensaje;
     }
 
     //Metodos de acceso
@@ -38,13 +49,29 @@ class Auto{
         $this->patente = $patente;
     }
 
-    public function getDniDuenio(){
-        return $this->dniDuenio;
+    public function getRDniDuenio(){
+        return $this->rDniDuenio;
     }
 
-    public function setDniDuenio($dniDuenio){
-        $this->dniDuenio = $dniDuenio;
+    public function setRDniDuenio($rDniDuenio){
+        $this->rDniDuenio = $rDniDuenio;
     }
 
+    public function getMensaje(){
+        return $this->mensaje;
+    }
 
+    public function setMensaje($mensaje){
+        $this->mensaje = $mensaje;
+    }
+
+    public function __toString()
+    {
+        return "Patente: " . $this->getPatente() . 
+        "\nMarca: " . $this->getMarca() . 
+        "\nModelo: " . $this->getModelo() . 
+        "\nDueño: " . $this->getRDniDuenio();
+    }
+
+    //Funciones BD
 }
