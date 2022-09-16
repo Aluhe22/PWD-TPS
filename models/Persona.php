@@ -21,12 +21,12 @@ class Persona{
 
     public function cargar($dni, $nombre, $apellido, $nacimiento, $telefono, $domicilio)
     {
-        $this->Nro_dni=$dni;
-        $this->Nombre=$nombre;
-        $this->Apellido=$apellido;
-        $this->fechaNac=$nacimiento;
-        $this->Telefono=$telefono;
-        $this->Domicilio=$domicilio;
+        $this->setNro_dni($dni);
+        $this->setNombre($nombre);
+        $this->setApellido($apellido);
+        $this->setFechaNac($nacimiento);
+        $this->setTelefono($telefono);
+        $this->setDomicilio($domicilio);
 
     }
 
