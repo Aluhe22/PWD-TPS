@@ -10,7 +10,13 @@ class Persona{
 
     public function __construct()
     {
-        
+        $this->Nro_dni="";
+        $this->Nombre="";
+        $this->Apellido="";
+        $this->fechaNac="";
+        $this->Telefono="";
+        $this->Domicilio="";
+        $this->Mensaje="";
     }
 
     public function cargar($dni, $nombre, $apellido, $nacimiento, $telefono, $domicilio)
