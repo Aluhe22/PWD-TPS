@@ -130,9 +130,6 @@ class Persona{
                     $this->setTelefono($row2['Telefono']);
                     $this->setDomicilio($row2['Domicilio']);
                     $this->setFechaNac($row2['fechaNac']);
-                    //$persona = new Persona();
-                    //$viaje->buscar($row2['NroDni']);
-                    //$this->setIdviaje($viaje); (Esto se usaba para el tp final de ipoo)
                     $rta = true;
                 }
             }else{
@@ -156,13 +153,7 @@ class Persona{
             if($base->Ejecutar($consulta)){
                 $array = array();
                 while($row2 = $base->Registro()){
-                    //$rdocumento = $row2['pdocumento'];
-                    //$pnombre = $row2['pnombre'];
-                    //$papellido = $row2['papellido'];
-                    //$ptelefono = $row2['ptelefono'];
-                    //$idviaje = $row2['idviaje'];
                     $persona = new Persona();
-                    //$pasajero->cargar($rdocumento, $pnombre, $papellido, $ptelefono, $idviaje);
                     $persona->buscar($row2['NroDni']);
                     $array[] = $persona;
                 }
@@ -178,8 +169,6 @@ class Persona{
     public function insertar(){
         $base = new BaseDatos();
         $rta = false;
-        //$objViaje = $this->getIdviaje();
-        //$idviaje = $objViaje->getIdviaje();
         $consulta = "INSERT INTO persona (NroDni, Nombre, Apellido, Telefono, Domicilio) VALUES( '{$this->getNro_dni()}' , '{$this->getNombre()}' ,'{$this->getApellido()}' , '{$this->getTelefono()}' , '{$this->getDomicilio()}', '{$this->getFechaNac()}')";
         if($base->Iniciar()){
             if($base->Ejecutar($consulta)){
@@ -196,8 +185,6 @@ class Persona{
     public function modificar(){
         $rta = false;
         $base = new BaseDatos();
-        //$objViaje = $this->getIdviaje();
-        //$idViaje = $objViaje->getIdviaje();
         $consulta = "UPDATE persona SET Nombre = '{$this->getNombre()}', Apellido = '{$this->getApellido()}', Telefono = '{$this->getTelefono()}', Domicilio = '{$this->getDomicilio()}', fechaNac = '{$this->getFechaNac()}' WHERE NroDni =  '{$this->getNro_dni()}'";
         if($base->Iniciar()){
             if($base->Ejecutar($consulta)){
