@@ -124,11 +124,13 @@ class Persona{
         if($base->Iniciar()){
             if($base->Ejecutar($consulta)){
                 if($row2 = $base->Registro()){
-                    $this->setNro_dni($row2['pdocumento']);
-                    $this->setNombre($row2['pnombre']);
-                    $this->setApellido($row2['papellido']);
-                    $this->setTelefono($row2['ptelefono']);
-                    $persona = new Persona();
+                    $this->setNro_dni($row2['NroDni']);
+                    $this->setNombre($row2['Nombre']);
+                    $this->setApellido($row2['Apellido']);
+                    $this->setTelefono($row2['Telefono']);
+                    $this->setDomicilio($row2['Domicilio']);
+                    $this->setFechaNac($row2['fechaNac']);
+                    //$persona = new Persona();
                     //$viaje->buscar($row2['NroDni']);
                     //$this->setIdviaje($viaje); (Esto se usaba para el tp final de ipoo)
                     $rta = true;
@@ -178,12 +180,30 @@ class Persona{
         $rta = false;
         //$objViaje = $this->getIdviaje();
         //$idviaje = $objViaje->getIdviaje();
-        $consulta = "INSERT INTO persona (NroDni, Nombre, Apellido, Telefono, Domicilio) VALUES( '{$this->getNro_dni()}' , '{$this->getNombre()}' ,'{$this->getApellido()}' , '{$this->getTelefono()}' , '{$this->getDomicilio()}')";
+        $consulta = "INSERT INTO persona (NroDni, Nombre, Apellido, Telefono, Domicilio) VALUES( '{$this->getNro_dni()}' , '{$this->getNombre()}' ,'{$this->getApellido()}' , '{$this->getTelefono()}' , '{$this->getDomicilio()}', '{$this->getFechaNac()}')";
         if($base->Iniciar()){
             if($base->Ejecutar($consulta)){
                 $rta = true;
             }else{
                 $this->setMensaje($base->getError());    
+            }
+        }else{
+            $this->setMensaje($base->getError());
+        }
+        return $rta;
+    }
+
+    public function modificar(){
+        $rta = false;
+        $base = new BaseDatos();
+        //$objViaje = $this->getIdviaje();
+        //$idViaje = $objViaje->getIdviaje();
+        $consulta = "UPDATE persona SET Nombre = '{$this->getNombre()}', Apellido = '{$this->getApellido()}', Telefono = '{$this->getTelefono()}', Domicilio = '{$this->getDomicilio()}', fechaNac = '{$this->getFechaNac()}' WHERE NroDni =  '{$this->getNro_dni()}'";
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                $rta = true;
+            }else{
+                $this->setMensaje($base->getError());
             }
         }else{
             $this->setMensaje($base->getError());
