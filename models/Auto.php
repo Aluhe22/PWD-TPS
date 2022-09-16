@@ -1,4 +1,5 @@
 <?php
+
 class Auto
 {
     private $patente;
@@ -91,10 +92,10 @@ class Auto
     {
         $base = new BaseDatos();
         $resp = false;
-        $sql = "SELECT * FROM Auto WHERE Patente = " . $patente;
+        $sql = "SELECT * FROM auto WHERE Patente = " . $patente;
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
-                if($row2 = $base->Registro()){
+                if ($row2 = $base->Registro()) {
                     $this->setPatente($row2['Patente']);
                     $this->setMarca($row2['Marca']);
                     $this->setModelo($row2['Modelo']);
@@ -110,7 +111,95 @@ class Auto
         } else {
             $this->setMensaje($base->getError());
         }
+        return $resp;
     }
 
     //LISTAR
+    public static function listar($condicion = '')
+    {
+        $array = null;
+        $base = new BaseDatos();
+        $sql =  "SELECT * FROM auto";
+        if($condicion != ''){
+            $sql = $sql . ' WHERE ' . $condicion;
+        }
+        if($base->Iniciar()){
+            if($base->Ejecutar($sql)){
+                $array = array();
+                while($row2 = $base->Registro()){
+                    $objAuto = new Auto();
+                    $objAuto->buscar($row2['Patente']);
+                    $array[] = $objAuto;
+                }
+            } else {
+                Auto::setMensaje($base->getError());
+            }
+        } else {
+            Auto::setMensaje($base->getError());
+        }
+        return $array;
+    }
+
+    //INSERTAR
+    public function insertar(){
+        $base = new BaseDatos();
+        $resp = false;
+        //Asigno los datos a variables
+        $patente = $this->getPatente();
+        $marca = $this->getMarca();
+        $modelo = $this->getModelo();
+        $duenio = $this->getRDniDuenio();
+        $dniDuenio = $duenio->getNro_dni();
+        //Creo la consulta 
+        $sql = "INSERT INTO auto (Patente, Marca, Modelo, DniDuenio) VALUES ('{$patente}', '{$marca}'. '{$modelo}', '{$dniDuenio}')";
+        if($base->Iniciar()){
+            if($base->Ejecutar($sql)){
+                $resp = true;
+            } else {
+                $this->setMensaje($base->getError());
+            }
+        } else {
+            $this->setMensaje($base->getError());
+        }
+    }
+
+    //MODIFICAR
+    public function modificar(){
+        $base = new BaseDatos();
+        $resp = false;
+        $patente = $this->getPatente();
+        $marca = $this->getMarca();
+        $modelo = $this->getModelo();
+        $duenio = $this->getRDniDuenio();
+        $dniDuenio = $duenio->getNro_dni();
+        $sql = "UPDATE auto SET Marca = '{$marca}', Modelo = '{$modelo}', DniDuenio = '{$dniDuenio}' WHERE Patente = '{$patente}'";
+        if($base->Iniciar()){
+            if($base->Ejecutar($sql)){
+                $resp = true;
+            } else {
+                $this->setMensaje($base->getError());
+            }
+        } else {
+            $this->setMensaje($base->getError());
+        }
+    }
+
+    //ELIMINAR
+    public function eliminar()
+    {
+        $base = new BaseDatos();
+        $rta = false;
+        $consulta = "DELETE FROM auto WHERE Patente = " . $this->getPatente();
+        if ($base->Iniciar()) {
+            if ($base->Ejecutar($consulta)) {
+                $rta = true;
+            } else {
+                $this->setMensaje($base->getError());
+            }
+        } else {
+            $this->setMensaje($base->getError());
+        }
+        return $rta;
+    }
 }
+
