@@ -136,5 +136,69 @@ class Persona{
         return $rta;
     }
 
-    //AGREGAR LAS FUNCIONES QUE FALTAN INSERTAR, LISTAR, MODIFICAR, ELIMINAR
+    
+    public static function listar($condicion = ''){
+        $array = null;
+        $base = new BaseDatos();
+        $consulta = "SELECT * FROM persona";
+        if($condicion != ''){
+            $consulta = $consulta . ' WHERE ' . $condicion;
+        }
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                $array = array();
+                while($row2 = $base->Registro()){
+                    //$rdocumento = $row2['pdocumento'];
+                    //$pnombre = $row2['pnombre'];
+                    //$papellido = $row2['papellido'];
+                    //$ptelefono = $row2['ptelefono'];
+                    //$idviaje = $row2['idviaje'];
+                    $persona = new Persona();
+                    //$pasajero->cargar($rdocumento, $pnombre, $papellido, $ptelefono, $idviaje);
+                    $persona->buscar($row2['NroDni']);
+                    $array[] = $persona;
+                }
+            }else{
+                Persona::setMensaje($base->getError());
+            }
+        }else{
+            Persona::setMensaje($base->getError());
+        }
+        return $array;
+    }
+
+    public function insertar(){
+        $base = new BaseDatos();
+        $rta = false;
+        //$objViaje = $this->getIdviaje();
+        //$idviaje = $objViaje->getIdviaje();
+        $consulta = "INSERT INTO persona (NroDni, Nombre, Apellido, Telefono, Domicilio) VALUES( '{$this->getNro_dni()}' , '{$this->getNombre()}' ,'{$this->getApellido()}' , '{$this->getTelefono()}' , '{$this->getDomicilio()}')";
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                $rta = true;
+            }else{
+                $this->setMensaje($base->getError());    
+            }
+        }else{
+            $this->setMensaje($base->getError());
+        }
+        return $rta;
+    }
+
+    public function eliminar(){
+        $base = new BaseDatos();
+        $rta = false;
+        $consulta = "DELETE FROM persona WHERE NroDni = " . $this->getNro_dni();
+        if($base->Iniciar()){
+            if($base->Ejecutar($consulta)){
+                $rta = true;
+            }else{
+                $this->setMensaje($base->getError());
+            }
+        }else{
+            $this->setMensaje($base->getError());
+        }
+        return $rta;
+    }
+ 
 }
