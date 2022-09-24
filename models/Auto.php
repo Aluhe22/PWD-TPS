@@ -1,5 +1,6 @@
 <?php
-
+include_once 'Persona.php';
+include_once '../Modelo/conector/BaseDatos.php';
 class Auto
 {
     private $patente;
@@ -13,17 +14,16 @@ class Auto
         $this->patente = "";
         $this->marca = "";
         $this->modelo = "";
-        $this->rDniDuenio = "";
+        $this->rDniDuenio = '';
         $this->mensaje = "";
     }
 
-    public function cargar($patente, $marca, $modelo, $dniDuenio, $mensaje)
+    public function cargar($patente, $marca, $modelo, $dniDuenio)
     {
         $this->setPatente($patente);
         $this->setMarca($marca);
         $this->setModelo($modelo);
         $this->setRDniDuenio($dniDuenio);
-        $this->setMensaje($mensaje);
     }
 
     //Metodos de acceso
@@ -57,6 +57,9 @@ class Auto
         $this->patente = $patente;
     }
 
+    /**
+     * @return Persona
+     */
     public function getRDniDuenio()
     {
         return $this->rDniDuenio;
@@ -92,7 +95,7 @@ class Auto
     {
         $base = new BaseDatos();
         $resp = false;
-        $sql = "SELECT * FROM auto WHERE Patente = " . $patente;
+        $sql = "SELECT * FROM auto WHERE Patente = '" . $patente . "'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 if ($row2 = $base->Registro()) {
@@ -115,13 +118,13 @@ class Auto
     }
 
     //LISTAR
-    public static function listar($condicion = '')
+    public function listar($condicion = '')
     {
         $array = null;
         $base = new BaseDatos();
-        $sql =  "SELECT * FROM auto";
+        $sql =  "select * from auto";
         if($condicion != ''){
-            $sql = $sql . ' WHERE ' . $condicion;
+            $sql = $sql.' where '.$condicion;
         }
         if($base->Iniciar()){
             if($base->Ejecutar($sql)){
@@ -132,11 +135,12 @@ class Auto
                     $array[] = $objAuto;
                 }
             } else {
-                Auto::setMensaje($base->getError());
+                $this->setMensaje($base->getError());
             }
         } else {
-            Auto::setMensaje($base->getError());
+            $this->setMensaje($base->getError());
         }
+        
         return $array;
     }
 
@@ -149,7 +153,7 @@ class Auto
         $marca = $this->getMarca();
         $modelo = $this->getModelo();
         $duenio = $this->getRDniDuenio();
-        $dniDuenio = $duenio->getNro_dni();
+        $dniDuenio = $duenio->getNroDni();
         //Creo la consulta 
         $sql = "INSERT INTO auto (Patente, Marca, Modelo, DniDuenio) VALUES ('{$patente}', '{$marca}'. '{$modelo}', '{$dniDuenio}')";
         if($base->Iniciar()){
@@ -161,6 +165,7 @@ class Auto
         } else {
             $this->setMensaje($base->getError());
         }
+        return $resp;
     }
 
     //MODIFICAR
@@ -171,7 +176,7 @@ class Auto
         $marca = $this->getMarca();
         $modelo = $this->getModelo();
         $duenio = $this->getRDniDuenio();
-        $dniDuenio = $duenio->getNro_dni();
+        $dniDuenio = $duenio->getNroDni();
         $sql = "UPDATE auto SET Marca = '{$marca}', Modelo = '{$modelo}', DniDuenio = '{$dniDuenio}' WHERE Patente = '{$patente}'";
         if($base->Iniciar()){
             if($base->Ejecutar($sql)){
@@ -182,6 +187,7 @@ class Auto
         } else {
             $this->setMensaje($base->getError());
         }
+        return $resp;
     }
 
     //ELIMINAR

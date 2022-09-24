@@ -14,7 +14,7 @@ class BaseDatos extends PDO {
     public function __construct(){
         $this->engine = 'mysql';
         $this->host = 'localhost';
-        $this->database = 'PWD';
+        $this->database = 'phpMysql';
         $this->user = 'root';
         $this->pass = '';
         $this->debug = true;
@@ -57,8 +57,7 @@ class BaseDatos extends PDO {
      * Funcion que setea la variable instancia error
      */
     public function setError($e){
-        $this->error = $e;
-        
+        //$this->error = $e;
     }
         
     /**
@@ -113,7 +112,7 @@ class BaseDatos extends PDO {
    private function EjecutarInsert($sql){
        $resultado=parent::query($sql);
        if(!$resultado){
-           $this->analizarDebug();
+           //$this->analizarDebug(); <- NO SE LO COMENTE PORQUE SINO ME TIRABA ERROR 
            $id=0;
        }else{
          $id =  $this->lastInsertId(); 
@@ -222,10 +221,5 @@ class BaseDatos extends PDO {
       return $this->resultado;
    }
    
-   
-   
-   
 
-   
- 
 } 
